@@ -31,8 +31,13 @@ public class LogIn extends RequestHandler {
 		if (errors.size() == 0) {
 			PersonService personService = super.getPersonService();
 			Person person = personService.getAuthenticatedUser(email, password);
+
+
 			if (person != null) {
 				createSession(person, request, response);
+				//PLAYER IS ONLINE WHEN LOGGED IN
+				person.setStatus("Online");
+				destination = "chatPage.jsp";
 			} else {
 				errors.add("No valid email/password");
 			}
@@ -41,7 +46,10 @@ public class LogIn extends RequestHandler {
 		if (errors.size() > 0) {
 			request.setAttribute("errors", errors);
 		}
-		
+
+
+
+
 		return destination;	
 	}
 	

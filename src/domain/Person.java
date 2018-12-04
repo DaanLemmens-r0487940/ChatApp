@@ -1,10 +1,13 @@
 package domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,6 +20,9 @@ public class Person {
 	private String firstName;
 	private String lastName;
 	private Role role;
+	private List<Person> friends = new ArrayList<Person>();
+	//When a user is added, he isn't online
+	private String status = "Offline";
 
 	public Person(String userId, String password, String firstName,
 			String lastName,Role role) {
@@ -47,7 +53,6 @@ public class Person {
 	public void setRole(Role role) {
 		this.role=role;
 	}
-	
 
 	public void setUserId(String userId) {
 		if (userId.isEmpty()) {
@@ -147,6 +152,34 @@ public class Person {
 			throw new IllegalArgumentException("No last name given");
 		}
 		this.lastName = lastName;
+	}
+
+	//STATUS
+	public String getStatus(){
+		return status;
+	}
+
+	public void setStatus(String status){
+		this.status = status;
+	}
+
+	//FRIENDS
+	public void setFriends(List<Person> friends){
+		this.friends = friends;
+	}
+
+	@JsonIgnore
+	public List<Person> getFriends(){
+		return friends;
+	}
+
+	public void addFriend(Person person){
+		this.getFriends().add(person);
+		//for (Person p : getFriends()){
+		//	if (p.userId.equals(person.userId)){
+		//		getFriends().add(person);
+		//	}
+		//}
 	}
 
 }

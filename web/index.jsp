@@ -31,19 +31,21 @@
 		</form>
 	</c:when>
 	<c:otherwise>
+
 		<form method="post" action="Controller?action=LogIn">
-			<p>
-				<label for="email">Your email </label>
-				<input type="text" id="email" name="email" value="jan@ucll.be">
-			</p>
-			<p>
-				<label for="password">Your password</label>
-				<input type="password" id="password" name="password" value="t">
-			</p>
-			<p>
-				<input type="submit" id="loginbutton" value="Log in">
-			</p>
+				<p>
+					<label for="email">Your email </label>
+					<input type="text" id="email" name="email" value="jan@ucll.be">
+				</p>
+				<p>
+					<label for="password">Your password</label>
+					<input type="password" id="password" name="password" value="t">
+				</p>
+				<p>
+					<input type="submit" id="loginbutton" value="Log in">
+				</p>
 		</form>
+
 	</c:otherwise>
 </c:choose> </main>
 

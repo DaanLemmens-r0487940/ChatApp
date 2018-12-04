@@ -43,16 +43,28 @@ public class Controller extends HttpServlet {
         	try {
         		handler = controllerFactory.getController(action, model);
 				destination = handler.handleRequest(request, response);
-        	} 
+
+        		if (handler instanceof AsynchronousRequestHandler){
+        			response.getWriter().write(destination);
+				}
+				else {
+					request.getRequestDispatcher(destination).forward(request, response);
+				}
+        	}
         	catch (NotAuthorizedException exc) {
         		List<String> errors = new ArrayList<String>();
         		errors.add(exc.getMessage());
         		request.setAttribute("errors", errors);
         		destination="index.jsp";
+				request.getRequestDispatcher(destination).forward(request, response);
         	}
         }
-        RequestDispatcher view = request.getRequestDispatcher(destination);
-        view.forward(request, response);
+		else {
+			request.getRequestDispatcher(destination).forward(request, response);
+		}
+
+
+
 	}
 
 }
