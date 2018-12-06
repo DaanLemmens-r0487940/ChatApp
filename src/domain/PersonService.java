@@ -7,10 +7,12 @@ import db.PersonRepositoryStub;
 
 public class PersonService {
 	private PersonRepository personRepository = new PersonRepositoryStub();
+	private ConversationService cService = new ConversationService();
 
 	public PersonService(){
 	}
-	
+
+	//USERS
 	public Person getPerson(String personId)  {
 		return getPersonRepository().get(personId);
 	}
@@ -38,4 +40,20 @@ public class PersonService {
 	private PersonRepository getPersonRepository() {
 		return personRepository;
 	}
+
+	//CONVERSATIONS
+	public Conversation getConversation(Person s, Person r){
+		return cService.getConversation(s,r);
+	}
+
+	public List<Conversation> getConversations(){
+		return cService.getConversations();
+	}
+
+	//makes new conversation if there isn't yet a conversation initiated by these 2 users
+	public void addMessageToConversation(Person s, Person r, Message m){
+		cService.getConversation(s,r).addMessage(m);
+	}
+
+
 }

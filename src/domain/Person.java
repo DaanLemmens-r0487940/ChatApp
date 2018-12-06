@@ -175,11 +175,6 @@ public class Person {
 
 	public void addFriend(Person person){
 		this.getFriends().add(person);
-		//for (Person p : getFriends()){
-		//	if (p.userId.equals(person.userId)){
-		//		getFriends().add(person);
-		//	}
-		//}
 	}
 
 }
