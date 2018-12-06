@@ -38,7 +38,7 @@ function loadMessages(friendo){
        type : "GET",
        url : "Controller?action=GetMessages&friend=" + friendo,
         datatype : "application/json",
-        succes : frunction(json) {
+        succes : function(json) {
            var data = JSON.parse(json);
            var chat = $("#chat");
 
