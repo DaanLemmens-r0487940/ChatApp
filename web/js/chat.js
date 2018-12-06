@@ -28,6 +28,26 @@ function openChatScreen(button){
     });
 }
 
-function loadMessages(button){
+function loadMessages(friendo){
+    // console.log(friend.id
 
+    //is actually the receiver, but lets call it friend for easy naming
+    var friendo = friend.id;
+
+    $.ajax({
+       type : "GET",
+       url : "Controller?action=GetMessages&friend=" + friendo,
+        datatype : "application/json",
+        succes : frunction(json) {
+           var data = JSON.parse(json);
+           var chat = $("#chat");
+
+           for (var i = 0; i < data.length; i++){
+               var p = document.createElement("p");
+               p.innerHTML = data[i];
+               chat.appendChild(p);
+           }
+    }
+    });
+    setTimeout(loadMessages(), 1000);
 }
