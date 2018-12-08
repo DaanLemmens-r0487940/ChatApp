@@ -13,7 +13,7 @@ function openChatScreen(email){
     //console.log("ID =  " + email);
     receiver = email;
     //set to 600
-    setInterval(loadMessages, 6000);
+    setInterval(loadMessages, 600);
     $(document).ready(function(){
         //more fancy shit for this app, because i like doing this stuff
         $("#chat").hide().fadeIn(700);

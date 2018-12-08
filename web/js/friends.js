@@ -79,7 +79,7 @@ function getFriendListData() {
 
 
             //set to 1000
-            setTimeout("friendList()", 10000);
+            setTimeout("friendList()", 1000);
 
         }
     }
