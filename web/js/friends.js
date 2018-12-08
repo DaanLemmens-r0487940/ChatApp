@@ -74,6 +74,11 @@ function getFriendListData() {
 
             //CHECK EVERY TEN SECONDS IF FRIEND IS ONLINE/OFFLINE
             //ALSO SHOW NEW FRIENDS THAT HAVE BEEN ADDED
+            //
+
+
+
+            //set to 1000
             setTimeout("friendList()", 10000);
 
         }

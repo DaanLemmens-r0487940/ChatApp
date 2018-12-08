@@ -20,10 +20,11 @@ public class GetMessages extends AsynchronousRequestHandler{
 
         HttpSession session = request.getSession();
         Person s = (Person)session.getAttribute("user");
+       // System.out.println("GET MESSAGE FROM PERSON1: " + s.getFirstName());
 
         String friend = request.getParameter("friend");
         Person r = service.getPerson(friend);
-
+      //  System.out.println("GET MESSAGE FROM PERSON1: " + r.getFirstName());
         //Conversation c = service.getConversation(s, r);
         Conversation conversation = null;
         for (Conversation c : this.getPersonService().conversations){
@@ -46,7 +47,7 @@ public class GetMessages extends AsynchronousRequestHandler{
 
 
 
-        System.out.println("Sender: " + conversation.getSender().getFirstName() +" Recepient: "+ conversation.getRecipient().getFirstName());
+      // System.out.println("Sender: " + conversation.getSender().getFirstName() +" Recepient: "+ conversation.getRecipient().getFirstName() + " MESSAGES: " + conversation.getMessages());
 
         return "";
     }

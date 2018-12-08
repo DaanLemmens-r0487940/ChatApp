@@ -20,7 +20,12 @@ public class SendMessage extends AsynchronousRequestHandler {
             String receiver = request.getParameter("r");
             Person r = service.getPerson(receiver);
 
+            System.out.println("Person 1: " +s.getFirstName());
+           System.out.println("Person 2: " + r.getFirstName());
+
             String comment = request.getParameter("m");
+        System.out.println("Comment: " + comment);
+
 
             Conversation conversation = null;
 
@@ -47,7 +52,7 @@ public class SendMessage extends AsynchronousRequestHandler {
             }
 
 
-
+        System.out.println("Sender: " + conversation.getSender().getFirstName() +" Recepient: "+ conversation.getRecipient().getFirstName() + " MESSAGES: " + conversation.getMessages());
 
 
         return "";

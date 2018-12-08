@@ -56,7 +56,7 @@
 
                <p>Chatscreen</p>
                <div id="chat">
-                   <h4 id="receiver"></h4>
+                   <div id="receiver"></div>
                    <div id="messages"></div>
                    <input type="text" id="message"/>
                    <button type="button" id="sendMessage">Send</button>
