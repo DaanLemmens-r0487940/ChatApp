@@ -1,12 +1,18 @@
 $(function() {
     //slidedown / fade in the table of friends
-    $('th').hide().slideDown();
+    //$('th').hide().slideDown();
 
-    //fade out these elements
-   /* $("#delet").click(function(){
-        $(this).fadeOut(700);
+    //var $tr = $('tr');
+
+    //doet alleen de th want de data moet nog opgehaald worden op dit punt
+    $("tr").hide().each(function(index) {
+        $(this).delay(700 * index).fadeIn(700);
     });
-*/
+
+   /* $tr.click(function() {
+        $(this).fadeOut(700);
+    });*/
+
     //button to click to add a friend
     var $addFriendButton = $('#addFriendButton');
     var $addFriendForm = $('#newFriend');

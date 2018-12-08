@@ -5,11 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import domain.Conversation;
+import domain.Message;
 import domain.Person;
 import domain.Role;
 
 public class PersonRepositoryStub implements PersonRepository {
 	private Map<String, Person> persons = new HashMap<String, Person>();
+	private ArrayList<Conversation> conversations = new ArrayList<>();
 	
 	public PersonRepositoryStub () {
 		Person administrator = new Person("bib@ucll.be", "t", "Bib", "Liothekaris", Role.BIB);
@@ -29,7 +32,6 @@ public class PersonRepositoryStub implements PersonRepository {
 		an.addFriend(jan);
 
 
-
 		//NEW FRIENDS?
 
 		Person test1 = new Person("test1@ucll.be", "t", "test1", "1", Role.LID);
@@ -44,7 +46,7 @@ public class PersonRepositoryStub implements PersonRepository {
 	
 	public Person get(String personId){
 		if(personId == null){
-			throw new IllegalArgumentException("No id given");
+			throw new IllegalArgumentException("No personid given");
 		}
 		return persons.get(personId);
 	}

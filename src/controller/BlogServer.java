@@ -20,11 +20,11 @@ public class BlogServer {
     public void onOpen(Session session){
         System.out.println(session.getId() + " had opened a connection.");
         sendMessageToAll("User " + session.getId() + " has connected.");
-        try {
+      /*  try {
             session.getBasicRemote().sendText("Connection Established.");
         } catch (IOException e){
             e.printStackTrace();
-        }
+        }*/
         sessions.add(session);
     }
 

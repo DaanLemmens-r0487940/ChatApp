@@ -13,31 +13,43 @@ import java.io.IOException;
 public class SendMessage extends AsynchronousRequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        PersonService service = super.getPersonService();
 
-        String comment = request.getParameter("message");
-        String receiver = request.getParameter("receiver");
+            PersonService service = super.getPersonService();
 
-        HttpSession session = request.getSession();
-        Person s = (Person) session.getAttribute("user");
-        Person r = service.getPerson(receiver);
+            Person s = (Person) request.getSession().getAttribute("user");
+            String receiver = request.getParameter("r");
+            Person r = service.getPerson(receiver);
 
-        //sender sends a message
-        Message message = new Message(s, comment);
+            String comment = request.getParameter("m");
+
+            Conversation conversation = null;
+
+        for (Conversation c : this.getPersonService().conversations) {
+            if ((c.getSender().getUserId().equals(s.getUserId()) && c.getRecipient().getUserId().equals(r.getUserId())) ||
+                    (c.getRecipient().getUserId().equals(s.getUserId()) && c.getSender().getUserId().equals(r.getUserId()))) {
+                conversation = c;
+                break;
+            }
+        }
 
 
-        //add the message to the conversation
-        service.addMessageToConversation(s, r, message);
 
-        // Conversation con = null;
-        //if (service.getConversation(user, recipient) == null){
-            //con = new Conversation(user, recipient);
-           // service.addMessageToConversation(con);
-       // }
-        //else {
-           // con = service.getConversation(user, recipient);
-       // }
-        //con.addMessage(message);
-        return null;
+
+
+
+            if (conversation == null){
+                conversation = new Conversation(s,r);
+                service.conversations.add(conversation);
+            }
+
+            if (!comment.trim().isEmpty()){
+                conversation.getMessages().add(s.getFirstName() + ": " + comment);
+            }
+
+
+
+
+
+        return "";
     }
 }

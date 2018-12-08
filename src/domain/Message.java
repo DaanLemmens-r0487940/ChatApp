@@ -5,8 +5,8 @@ public class Message {
     private String message;
 
     public Message(Person sender, String message) {
-        setSender(sender);
-        setMessage(message);
+        this.setSender(sender);
+        this.setMessage(message);
     }
 
     public Person getSender() {

@@ -19,19 +19,40 @@ public class GetMessages extends AsynchronousRequestHandler{
         PersonService service = super.getPersonService();
 
         HttpSession session = request.getSession();
-        Person s = (Person)request.getAttribute("user");
+        Person s = (Person)session.getAttribute("user");
 
         String friend = request.getParameter("friend");
         Person r = service.getPerson(friend);
 
-        Conversation c = service.getConversation(s, r);
-        String json = this.toJSON(c.getMessages());
+        //Conversation c = service.getConversation(s, r);
+        Conversation conversation = null;
+        for (Conversation c : this.getPersonService().conversations){
+           if (c.getSender().getUserId().equals(s.getUserId()) && c.getRecipient().getUserId().equals(r.getUserId())
+           || c.getRecipient().getUserId().equals(s.getUserId()) && c.getSender().getUserId().equals(r.getUserId())){
+                conversation = c;
+                break;
+           }
+        }
+        if (conversation == null){
+            conversation = new Conversation(s,r);
+            //this.getPersonService().getConversations().add(c);
+            this.getPersonService().conversations.add(conversation);
+        }
 
-        return json;
+        String json = this.toJSON(conversation.getMessages());
+
+        response.setContentType("application/json");
+        response.getWriter().write(json);
+
+
+
+        System.out.println("Sender: " + conversation.getSender().getFirstName() +" Recepient: "+ conversation.getRecipient().getFirstName());
+
+        return "";
     }
 
-    public String toJSON (List<Message> messages) throws JsonProcessingException {
+    public String toJSON (List<String> list) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(messages);
+        return mapper.writeValueAsString(list);
     }
 }

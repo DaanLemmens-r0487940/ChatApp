@@ -1,53 +1,78 @@
 startChat();
 
-function startChat(button){
+function startChat(email){
+
     if (document.getElementById("chat") != null){
         $("#chat").hide();
     }
-    openChatScreen(button);
+       // openChatScreen(email);
 }
 
-function openChatScreen(button){
-    var receiver = button.id;
+let receiver = "";
 
+function openChatScreen(email){
+    console.log("ID =  " + email);
+//setInterval(getChat, 600);
+   receiver = email;
+   // var receiver = "an@ucll.be"
+ setInterval(loadMessages, 6000);
     $(document).ready(function(){
         //more fancy shit for this app, because i like doing this stuff
-        $("#chat").hide().fadeIn(4000);
+        $("#chat").hide().fadeIn(700);
 
 
         $("#sendMessage").click(function(){
            var message = $("#message").val();
            $("#message").val('');
             $.post("Controller?action=SendMessage", {
-                //change these names
-                message : message,
-                receiver : receiver
+                m : message,
+                r : receiver
             });
+           // $.post("Controller", {action: "SendMessage", m: message, r: receiver});
         });
-        loadMessages(button);
+        loadMessages();
     });
 }
 
-function loadMessages(friendo){
-    // console.log(friend.id
 
-    //is actually the receiver, but lets call it friend for easy naming
-    var friendo = friend.id;
 
-    $.ajax({
-       type : "GET",
-       url : "Controller?action=GetMessages&friend=" + friendo,
-        datatype : "application/json",
-        succes : function(json) {
-           var data = JSON.parse(json);
-           var chat = $("#chat");
+function loadMessages() {
+    //console.log("FRIENDID:" + friend);
 
-           for (var i = 0; i < data.length; i++){
-               var p = document.createElement("p");
-               p.innerHTML = data[i];
-               chat.appendChild(p);
-           }
+
+    //var receiver = "an@ucll.be"
+    console.log(receiver);
+    if (receiver !== ""){
+        $.ajax({
+            type: "GET",
+            url: "Controller?action=GetMessages&friend=" + receiver,
+            // dataType: "application/json",
+            dataType: "application/json",
+            success: function (json) {
+                /*var data = JSON.parse(json);
+                var chat = $("#messages")[0];
+                // var chats = $("#chat");
+                console.log(json);
+                console.log(chat);
+                console.log(data);
+                //  console.log(chats);
+
+                for (var i = 0; i < json.length; i++) {
+                    var p = document.createElement('p');
+                    p.innerHTML = json[i];
+                    chat.appendChild(p);
+                }*/
+
+                var response = JSON.parse(json);
+                console.log(response);
+
+                $('#messages').empty();
+                for (var i = 0; i < response.length; i++) {
+                    $('#messages').append($('<p>' + response[i]+ '</p>'));
+                }
+            }
+        });
     }
-    });
-    setTimeout(loadMessages(), 1000);
+
+
 }

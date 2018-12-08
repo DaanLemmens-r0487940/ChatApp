@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<sc>
+<html>
     <jsp:include page="head.jsp">
         <jsp:param name="title" value="Chat"/>
     </jsp:include>
@@ -19,17 +19,18 @@
                 <p>${user.getStatus()}</p>
             </div>
 
+
+
             <div id="friendsTable">
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">Username</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Chat</th>
                         </tr>
                     </thead>
-                    <tbody id="friendListBody">
-
-                    </tbody>
+                    <tbody id="friendListBody"></tbody>
                 </table>
             </div>
 
@@ -53,21 +54,24 @@
                 <input type="button" id="addFriend" value="Add Friend"  /><!-- onclick="addFriend();"-->
             </div>
 
-
-            <p>Chatscreen</p>
+               <p>Chatscreen</p>
                <div id="chat">
-                   <p id="receiver"></p>
+                   <h4 id="receiver"></h4>
                    <div id="messages"></div>
-                   <input type="text" id="message"></input>
+                   <input type="text" id="message"/>
                    <button type="button" id="sendMessage">Send</button>
                </div>
+
+          <%--     <h3>Chat</h3>
+               <div id="chatNew"></div>--%>
+
 
         </main>
     </body>
     <script type="text/javascript" src="js/status.js"></script>
     <script type="text/javascript" src="js/friends.js"></script>
     <script type="text/javascript" src="js/addFriend.js"></script>
-    <script src="js/jquery-1.4.4.min.js"></script>
-    <script src="js/fancyJQuery.js"></script>
-    <script src="js/chat.js"></script>
+    <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="js/fancyJQuery.js"></script>
+    <script type="text/javascript" src="js/chat.js"></script>
 </html>
