@@ -19,28 +19,34 @@ public class Person {
 	private String salt;
 	private String firstName;
 	private String lastName;
+	private int age;
+	private String gender;
 	private Role role;
 	private List<Person> friends = new ArrayList<Person>();
 	//When a user is added, he isn't online
 	private String status = "Offline";
 
 	public Person(String userId, String password, String firstName,
-			String lastName,Role role) {
+			String lastName,Role role, int age, String gender) {
 		setUserId(userId);
 		setHashedPassword(password);
 		setFirstName(firstName);
 		setLastName(lastName);
 		setRole(role);
+		setAge(age);
+		setGender(gender);
 	}
 
 	public Person(String userId, String password, String salt,
-			String firstName, String lastName,Role role) {
+			String firstName, String lastName,Role role, int age, String gender) {
 		setUserId(userId);
 		setPassword(password);
 		setSalt(salt);
 		setFirstName(firstName);
 		setLastName(lastName);
 		setRole(role);
+		setAge(age);
+		setGender(gender);
 	}
 
 	public Person() {
@@ -56,14 +62,14 @@ public class Person {
 
 	public void setUserId(String userId) {
 		if (userId.isEmpty()) {
-			throw new IllegalArgumentException("No id given");
+			throw new DomainException("No id given");
 		}
 		String USERID_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 				+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 		Pattern p = Pattern.compile(USERID_PATTERN);
 		Matcher m = p.matcher(userId);
 		if (!m.matches()) {
-			throw new IllegalArgumentException("Email not valid");
+			throw new DomainException("Email not valid");
 		}
 		this.userId = userId;
 	}
@@ -78,21 +84,21 @@ public class Person {
 
 	public boolean isCorrectPassword(String password) {
 		if (password.isEmpty()) {
-			throw new IllegalArgumentException("No password given");
+			throw new DomainException("No password given");
 		}
 		return getPassword().equals(hashPassword(password, getSalt()));
 	}
 
 	public void setPassword(String password) {
 		if (password.isEmpty()) {
-			throw new IllegalArgumentException("No password given");
+			throw new DomainException("No password given");
 		}
 		this.password = password;
 	}
 
 	public void setHashedPassword(String password) {
 		if (password.isEmpty()) {
-			throw new IllegalArgumentException("No password given");
+			throw new DomainException("No password given");
 		}
 		this.password = hashPassword(password);
 	}
@@ -137,7 +143,7 @@ public class Person {
 
 	public void setFirstName(String firstName) {
 		if (firstName.isEmpty()) {
-			throw new IllegalArgumentException("No firstname given");
+			throw new DomainException("No firstname given");
 		}
 		this.firstName = firstName;// firstName;
 
@@ -149,7 +155,7 @@ public class Person {
 
 	public void setLastName(String lastName) {
 		if (lastName.isEmpty()) {
-			throw new IllegalArgumentException("No last name given");
+			throw new DomainException("No last name given");
 		}
 		this.lastName = lastName;
 	}
@@ -177,4 +183,29 @@ public class Person {
 		this.getFriends().add(person);
 	}
 
+	public void setAgeString(String age) {
+		if (age.isEmpty()){throw new DomainException("No age given");}
+		setAge(Integer.valueOf(age));
+	}
+
+	public void setAge(int age) {
+		if (age < 0){throw new DomainException("Age must be higher dan 0");}
+		this.age = age;
+	}
+
+	public int getAge(){
+		return age;
+	}
+
+
+	public void setGender(String gender) {
+		if (gender == null || gender.trim().isEmpty()){
+			throw new DomainException("no email given");
+		}
+		this.gender = gender;
+	}
+
+	public String getGender(){
+		return gender;
+	}
 }

@@ -110,6 +110,12 @@ fieldset {
 	color: #b94a48;
 }
 
+.safe {
+	 background-color: #88ff8a;
+	 border-color: #5cff4e;
+	 color: #285717;
+ }
+
 p>label.has-error {
 	color: #a80f0c;
 }
@@ -163,5 +169,10 @@ nav ul li#current {
 
 .review > div {
 	border-bottom: 2px solid teal;
+}
+
+#register{
+	margin-top: 3em;
+	border-top: 2px solid teal;
 }
 
