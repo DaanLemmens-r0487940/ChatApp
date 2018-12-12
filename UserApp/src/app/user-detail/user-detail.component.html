@@ -1,0 +1,19 @@
+<div *ngIf="user">
+  <h2>{{user.firstName}} Details</h2>
+  <div class="user"><span>id: </span>{{user.userId}}</div>
+  <div>
+    <label>firstName:
+      <input [(ngModel)]="user.firstName" placeholder="firstName"/>
+    </label>
+    <label>lastName:
+      <input [(ngModel)]="user.lastName" placeholder="lastName"/>
+    </label>
+    <label>gender:
+      <input [(ngModel)]="user.gender" placeholder="gender"/>
+    </label>
+    <label>age:
+      <input [(ngModel)]="user.age" placeholder="age"/>
+    </label>
+  </div>
+  <button (click)="goBack()">go back</button>
+</div>
