@@ -11,8 +11,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class AddFriend extends AsynchronousRequestHandler {
-    PersonService service = new PersonService();
-
 
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -35,9 +33,4 @@ public class AddFriend extends AsynchronousRequestHandler {
 
         return "";
     }
-
-   /* public String toJSON(List<Person> friends throws JsonProcessingException){
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(friends);
-    }*/
 }

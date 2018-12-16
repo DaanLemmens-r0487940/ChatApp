@@ -37,17 +37,4 @@ public class Conversation {
     public List<String> getMessages() {
         return messages;
     }
-
-    public void addMessage(String m){
-     //   if (m == null){
-     //       return;
-       // }
-     //   else {
-      //      this.messages.add(m);
-      //  }
-        this.getMessages().add(m);
-    }
-
-
-
 }

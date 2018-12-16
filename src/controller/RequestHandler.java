@@ -22,13 +22,4 @@ public abstract class RequestHandler {
 	public PersonService getPersonService() {
 		return personService;
 	}
-	
-	protected boolean isFromUserWithRole (HttpServletRequest request, Role role) {
-		Person person = (Person) request.getSession().getAttribute("user");
-		if (person != null && person.getRole().equals(role)) {
-			return true;
-		}
-		return false;
-	}
-
 }

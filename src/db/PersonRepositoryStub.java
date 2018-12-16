@@ -12,7 +12,6 @@ import domain.Role;
 
 public class PersonRepositoryStub implements PersonRepository {
 	private Map<String, Person> persons = new HashMap<String, Person>();
-	private ArrayList<Conversation> conversations = new ArrayList<>();
 	
 	public PersonRepositoryStub () {
 		Person administrator = new Person("bib@ucll.be", "t", "Bib", "Liothekaris", Role.BIB, 999, "Male");
@@ -30,18 +29,6 @@ public class PersonRepositoryStub implements PersonRepository {
 
 		an.addFriend(administrator);
 		an.addFriend(jan);
-
-
-		//NEW FRIENDS?
-
-		/*Person test1 = new Person("test1@ucll.be", "t", "test1", "1", Role.LID);
-		Person test2 = new Person("test2@ucll.be", "t", "test2", "2", Role.LID);
-		Person test3 = new Person("test3@ucll.be", "t", "test3", "3", Role.LID);
-		Person test4 = new Person("test4@ucll.be", "t", "test4", "4", Role.LID);
-		add(test1);
-		add(test2);
-		add(test3);
-		add(test4);*/
 	}
 	
 	public Person get(String personId){

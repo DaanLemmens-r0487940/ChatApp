@@ -46,11 +46,7 @@ public class LogIn extends RequestHandler {
 		if (errors.size() > 0) {
 			request.setAttribute("errors", errors);
 		}
-
-
-
-
-		return destination;	
+		return destination;
 	}
 	
 	private void createSession(Person person, HttpServletRequest request,

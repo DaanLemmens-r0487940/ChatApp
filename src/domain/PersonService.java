@@ -8,7 +8,6 @@ import db.PersonRepositoryStub;
 
 public class PersonService {
 	private PersonRepository personRepository = new PersonRepositoryStub();
-//	private ConversationService cService = new ConversationService();
 	public List<Conversation> conversations = new ArrayList<>();
 
 	public PersonService(){
@@ -26,14 +25,6 @@ public class PersonService {
 	public void addPerson(Person person) {
 		getPersonRepository().add(person);
 	}
-
-	public void updatePersons(Person person) {
-		getPersonRepository().update(person);
-	}
-
-	public void deletePerson(String id) {
-		getPersonRepository().delete(id);
-	}
 	
 	public Person getAuthenticatedUser(String email, String password) {
 		return getPersonRepository().getAuthenticatedUser(email, password);
@@ -43,25 +34,13 @@ public class PersonService {
 		return personRepository;
 	}
 
-	/*//CONVERSATIONS
-	public Conversation getConversation(Person s, Person r){
-		return cService.getConversation(s,r);
-	}
 
-	public List<Conversation> getConversations(){
-		return cService.getConversations();
+	//not implemented
+	public void updatePersons(Person person) {
+		getPersonRepository().update(person);
 	}
-
-*//*	//makes new conversation if there isn't yet a conversation initiated by these 2 users
-	public void addMessageToConversation(Person s, Person r, Message m){
-		cService.getConversation(s,r).addMessage(m);
-	}*//*
-
-	public void addConversation(Conversation c){
-		cService.addConversation(c);
+	//not implemented
+	public void deletePerson(String id) {
+		getPersonRepository().delete(id);
 	}
-
-	public void addMessage(Person s, Person r, Message m){
-		this.getConversation(s, r).addMessage(m);
-	}
-*/}
+}

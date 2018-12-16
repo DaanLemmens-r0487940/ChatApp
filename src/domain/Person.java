@@ -23,7 +23,7 @@ public class Person {
 	private String gender;
 	private Role role;
 	private List<Person> friends = new ArrayList<Person>();
-	//When a user is added, he isn't online
+	//When a user is added, he is set offline
 	private String status = "Offline";
 
 	public Person(String userId, String password, String firstName,
@@ -52,6 +52,7 @@ public class Person {
 	public Person() {
 	}
 
+	//roles arent important in this app, maybe with editing users, but now you just have to log in to get access to the rest of the applications
 	public Role getRole() {
 		return this.role;
 	}

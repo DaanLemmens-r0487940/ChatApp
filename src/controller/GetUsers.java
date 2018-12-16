@@ -28,9 +28,6 @@ public class GetUsers extends AsynchronousRequestHandler{
             json = this.toJSON(users);
         }
 
-
-
-
         response.setContentType("application/json");
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.getWriter().write(json);

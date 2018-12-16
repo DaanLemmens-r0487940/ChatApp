@@ -22,9 +22,7 @@ public class GetFriends extends AsynchronousRequestHandler {
         HttpSession session = request.getSession();
         Person person = (Person) session.getAttribute("user");
         List<Person> friends = person.getFriends();
-//        for (Person f: friends){
-//            System.out.println("Firstname: " + f.getFirstName() + " Status: " + f.getStatus());
-//        }
+
         String json = this.toJSON(friends);
         response.getWriter().write(json);
         return "";
