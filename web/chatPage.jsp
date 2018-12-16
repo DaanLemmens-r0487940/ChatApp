@@ -14,12 +14,9 @@
 
     <body onload="friendList()">
         <main>
-           <%-- <p id="delet">DELET DIS COMMENT</p>--%>
             <div id="currentStatus">
                 <p>${user.getStatus()}</p>
             </div>
-
-
 
             <div id="friendsTable">
                 <table class="table">
@@ -51,7 +48,7 @@
                 <div id="addFriendButton"><button href="#" id="showForm">+Friend</button></div>
             <div id="newFriend">
                 <input type="text" id="friendUserId" name="friendUserId" placeholder="user@ucll.be"/>
-                <input type="button" id="addFriend" value="Add Friend"  /><!-- onclick="addFriend();"-->
+                <input type="button" id="addFriend" value="Add Friend"  />
             </div>
 
                <p>Chatscreen</p>
@@ -61,11 +58,6 @@
                    <input type="text" id="message"/>
                    <button type="button" id="sendMessage">Send</button>
                </div>
-
-          <%--     <h3>Chat</h3>
-               <div id="chatNew"></div>--%>
-
-
         </main>
     </body>
     <script type="text/javascript" src="js/status.js"></script>

@@ -1,17 +1,9 @@
 $(function() {
-    //slidedown / fade in the table of friends
-    //$('th').hide().slideDown();
 
-    //var $tr = $('tr');
-
-    //doet alleen de th want de data moet nog opgehaald worden op dit punt
+    //doet alleen de th want de data wordt erna pas opgehaald
     $("tr").hide().each(function(index) {
         $(this).delay(700 * index).fadeIn(700);
     });
-
-   /* $tr.click(function() {
-        $(this).fadeOut(700);
-    });*/
 
     //button to click to add a friend
     var $addFriendButton = $('#addFriendButton');
@@ -49,10 +41,5 @@ $(function() {
                 $addFriendButton.hide().slideDown();
             });
         }
-
-
     });
-
-
-
 });

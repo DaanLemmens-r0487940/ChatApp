@@ -1,35 +1,21 @@
 var webSocket;
-var path = "ChatApp"
-
-//DOE DIT ZOALS VORIGE KEER (friends ofzo), NIET ZOALS DIT. duus in jsp
 var body = document.getElementById("blogBody");
+
 body.onload = openSocket;
 
 
 function openSocket() {
     console.log("Connection (Socket) opened.");
 
-    //webSocket = new WebSocket("ws://localhost:8080/blog");
-    //?? which one, or what does chatapp be in mine
+    //go to controller /blog
     webSocket = new WebSocket("ws://localhost:8080/blog");
-
-
-
-   /* webSocket.onopen = function (event) {
-        writeResponse("Connection opened");
-    };*/
 
     webSocket.onmessage = function(event){
         writeResponse(event.data);
     };
-
-  /*  webSocket.onclose = function(event){
-        writeResponse("Connection closed");
-    };*/
 }
 
 function writeResponse(message){
-    console.log(message);
 
     var message = JSON.parse(message);
     var commentOnTopic = message.topic;
@@ -38,22 +24,8 @@ function writeResponse(message){
     var rating = message.rating;
     var topicMessages;
 
-    console.log(commentOnTopic);
 
-
-
-
-
-    //messages.innerHTML +="<br/>" + text;
-
-
-    /*var messageParagraph = messages.childNodes[0];
-
-    messageParagraph = document.createElement('p');
-
-    var messageText = document.createTextNode(text);
-    messageParagraph.appendChild(messageText);
-    messages.appendChild(messageParagraph);*/
+    //which topic has been selected
     switch(commentOnTopic){
         case "(1)Projectweek":
             topicMessages = document.getElementById("comment1");
@@ -77,9 +49,7 @@ function writeResponse(message){
             break;
     }
 }
-//??????????????????????
-//refreshen van blog met onthouden van comments
-//zie friends??
+
 function send(){
     var commentOnTopic = document.getElementById("commentTopic").value;
     var name = document.getElementById("name").value;
@@ -108,40 +78,9 @@ function send(){
 
         webSocket.send(json);
     }
-
-
-
-
-
-
-   /* var text = document.getElementById("blog1Input").value;
-    webSocket.send(text);*/
-}
-/*
-
-function send2(){
-    var text = document.getElementById("blog2Input").value;
-    webSocket.send(text);
 }
 
-function send3(){
-    var text = document.getElementById("blog3Input").value;
-    webSocket.send(text);
-}
-function send4(){
-    var text = document.getElementById("blog4Input").value;
-    webSocket.send(text);
-}
-function send5(){
-    var text = document.getElementById("blog5Input").value;
-    webSocket.send(text);
-}
-*/
-
-
-
-
-//ON LEAVING PAGE CLOSE? is this also with refresh?
+//on leaving page close
 function closeSocket(){
     console.log("Connection (Socket) closed.");
     webSocket.close();
