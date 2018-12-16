@@ -23,8 +23,6 @@ export class UserService {
 
   getUser(userId: string): Observable<User> {
     //return of (USERS.find(user => user.id === id));
-    //const url = `${this.usersUrl}/?id=${id}`;
-   // const url = `${this.usersUrl}/${id}`;
     return (this.http.get<User>(this.usersUrl + `&userId=${userId}`));
 
 
